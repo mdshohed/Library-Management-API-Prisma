@@ -5,7 +5,7 @@
 This project is a **Library Management System API** developed using modern backend technologies. The API allows library staff and members to manage books, memberships, and borrowing activities efficiently. Key features include CRUD operations for books, members, and borrow records, along with functionalities to handle book borrowing and returning. The project utilizes UUID for unique identification across all tables.
 
 ## Live URL
-https://library-management-api.example.com
+https://library-management-api-prisma.vercel.app
 
 ## Technology Stack & Packages
 - **Node.js**: JavaScript runtime environment.
