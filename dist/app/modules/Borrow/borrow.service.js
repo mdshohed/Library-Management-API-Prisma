@@ -13,13 +13,12 @@ exports.BorrowService = void 0;
 const config_1 = require("../../../config");
 const createBorrow = (req) => __awaiter(void 0, void 0, void 0, function* () {
     const { bookId, memberId } = req.body;
-    console.log(req.body);
-    const bookInfo = yield config_1.prisma.book.findUniqueOrThrow({
+    yield config_1.prisma.book.findUniqueOrThrow({
         where: {
             bookId
         }
     });
-    const memberInfo = yield config_1.prisma.member.findUniqueOrThrow({
+    yield config_1.prisma.member.findUniqueOrThrow({
         where: {
             memberId
         }
@@ -46,7 +45,6 @@ const getOverDueFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentDate = new Date();
     const overDueDate = new Date();
     overDueDate.setDate(currentDate.getDate() - 14);
-    console.log(overDueDate);
     const overdueBorrows = yield config_1.prisma.borrow.findMany({
         where: {
             borrowDate: {

@@ -18,7 +18,6 @@ const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const http_status_1 = __importDefault(require("http-status"));
 const books_service_1 = require("./books.service");
 const createBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const result = yield books_service_1.BookService.createBook(req);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.CREATED,
