@@ -3,6 +3,6 @@ import { ReturnController } from './return.controller';
 
 const router = express.Router();
 
-router.post('/', ReturnController.returnBorrow);
+router.post('/', ReturnController.returnBook);
 
 export const ReturnRoutes = router;

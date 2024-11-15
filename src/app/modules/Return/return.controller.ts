@@ -4,8 +4,8 @@ import sendResponse from "../../../shared/sendResponse";
 import httpStatus from "http-status";
 import { ReturnService } from "./return.service";
 
-const returnBorrow = catchAsync(async (req: Request, res: Response) => {
-    const result = await ReturnService.createReturn();
+const returnBook = catchAsync(async (req: Request, res: Response) => {
+    const result = await ReturnService.returnBook(req);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -56,7 +56,7 @@ const deleteBorrow = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const ReturnController = {
-  returnBorrow,
+  returnBook,
   getAllFromDB,
   getByIdFromDB,
   updateBorrow,

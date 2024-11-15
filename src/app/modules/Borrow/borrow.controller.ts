@@ -5,11 +5,11 @@ import httpStatus from "http-status";
 import { BorrowService } from "./borrow.service";
 
 const createBorrow = catchAsync(async (req: Request, res: Response) => {
-    const result = await BorrowService.createBorrow();
+    const result = await BorrowService.createBorrow(req);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Borrow Created successfully!",
+        message: "Book borrowed successfully",
         data: result
     })
 });

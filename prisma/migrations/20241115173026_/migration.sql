@@ -29,7 +29,7 @@ CREATE TABLE "members" (
 CREATE TABLE "borrows" (
     "borrowId" TEXT NOT NULL,
     "borrowDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "returnDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "returnDate" TIMESTAMP(3),
     "bookId" TEXT NOT NULL,
     "memberId" TEXT NOT NULL,
 

@@ -39,8 +39,8 @@ model Member {
 
 model Borrow {
   borrowId       String      @id @default(uuid())
-  borrowDate     DateTime @default(now())  
-  returnDate     DateTime @default(now()) 
+  borrowDate     DateTime    @default(now())  
+  returnDate     DateTime?    @updatedAt
   bookId  String
   book Book @relation(fields: [bookId], references: [bookId])
 
