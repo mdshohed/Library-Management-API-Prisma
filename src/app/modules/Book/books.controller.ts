@@ -5,11 +5,13 @@ import httpStatus from "http-status";
 import { BookService } from "./books.service";
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
-    const result = await BookService.createBook();
+    console.log(req.body);
+    
+    const result = await BookService.createBook(req);
     sendResponse(res, {
-        statusCode: httpStatus.OK,
+        statusCode: httpStatus.CREATED,
         success: true,
-        message: "Book Created successfully!",
+        message: "Book created successfully",
         data: result
     })
 });
@@ -19,40 +21,41 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Book data fetched!",
+        message: "Books retrieved successfully",
         data: result
     })
 });
 
 const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
-
-    const result = await BookService.getByIdFromDB();
+    const {id} = req.params; 
+    const result = await BookService.getByIdFromDB( id );
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Book data fetched!",
+        message: "Book retrieved successfully",
         data: result
     })
 });
 
 const updateBook = catchAsync(async (req: Request, res: Response) => {
-    const result = await BookService.updateBook();
+    const {id} = req.params;
+    const result = await BookService.updateBook( id, req.body );
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Book updated!",
+        message: "Book updated successfully",
         data: result
     })
 });
 
 const deleteBook = catchAsync(async (req: Request, res: Response) => {
-    const result = await BookService.deleteBook();
+    const { id } = req.params; 
+    const result = await BookService.deleteBook( id );
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: "Book deleted!",
-      data: result
+      message: "Book successfully deleted",
     })
 });
 
