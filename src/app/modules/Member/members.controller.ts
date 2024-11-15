@@ -5,60 +5,55 @@ import httpStatus from "http-status";
 import { MemberService } from "./members.service";
 
 const createMember = catchAsync(async (req: Request, res: Response) => {
-    const result = await MemberService.createMember();
+    const result = await MemberService.createMember(req);
     sendResponse(res, {
-        statusCode: httpStatus.OK,
+        statusCode: httpStatus.CREATED,
         success: true,
-        message: "Member Created successfully!",
+        message: "Member created successfully",
         data: result
     })
 });
 
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-    // console.log(req.query)
-
-
     const result = await MemberService.getAllFromDB()
-
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Member data fetched!",
+        message: "Members retrieved successfully",
         data: result
     })
 });
 
-const getByIdFromDB = catchAsync(async (req: Request , res: Response) => {
-
-    const result = await MemberService.getByIdFromDB();
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+    const {id} = req.params; 
+    const result = await MemberService.getByIdFromDB( id );
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Member data fetched!",
+        message: "Member retrieved successfully",
         data: result
     })
 });
 
 const updateMember = catchAsync(async (req: Request, res: Response) => {
-
-    const result = await MemberService.updateMember();
+    const {id} = req.params;
+    const result = await MemberService.updateMember( id, req.body );
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Member updated!",
+        message: "Member updated successfully",
         data: result
     })
 });
 
 const deleteMember = catchAsync(async (req: Request, res: Response) => {
-
-    const result = await MemberService.deleteMember();
+    const { id } = req.params; 
+    const result = await MemberService.deleteMember( id );
     sendResponse(res, {
-        statusCode: httpStatus.OK,
-        success: true,
-        message: "Member deleted!",
-        data: result
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Member successfully deleted",
     })
 });
 

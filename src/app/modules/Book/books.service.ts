@@ -19,7 +19,16 @@ const createBook = async (req: Request) => {
 };
 
 const getAllFromDB = async () => {
-  const result = await prisma.book.findMany();
+  const result = await prisma.book.findMany({
+    select: { 
+      bookId: true,
+      title: true, 
+      genre: true,
+      publishedYear: true,
+      totalCopies: true,
+      availableCopies: true,
+    }
+  });
   return result;
 };
 
