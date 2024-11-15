@@ -24,12 +24,13 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     })
 });
 
-const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
-    const result = await BorrowService.getByIdFromDB();
+const getOverDueFromDB = catchAsync(async (req: Request, res: Response) => {
+    const result = await BorrowService.getOverDueFromDB();
+    
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Borrow data fetched!",
+        message: result.length ?  "Overdue borrow list fetched" : "No overdue books",
         data: result
     })
 });
@@ -58,7 +59,7 @@ const deleteBorrow = catchAsync(async (req: Request, res: Response) => {
 export const BorrowController = {
   createBorrow,
   getAllFromDB,
-  getByIdFromDB,
+  getOverDueFromDB,
   updateBorrow,
   deleteBorrow
 }

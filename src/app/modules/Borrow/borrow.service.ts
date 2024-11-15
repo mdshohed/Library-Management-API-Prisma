@@ -35,8 +35,33 @@ const getAllFromDB = async () => {
   return result;
 };
 
-const getByIdFromDB = async () => {
-   
+const getOverDueFromDB = async () => {
+  const currentDate = new Date();
+  const overDueDate = new Date();
+  overDueDate.setDate(currentDate.getDate() - 14);
+  console.log(overDueDate);
+  const overdueBorrows = await prisma.borrow.findMany({
+    where: {
+      borrowDate: {
+        lte: overDueDate,
+      },
+    },
+    include: {
+      book: true, 
+      member: true, 
+    },
+  });
+
+  const data = overdueBorrows.map(borrow => ({
+    borrowId: borrow.borrowId,
+    bookTitle: borrow.book.title, 
+    borrowerName: borrow.member.name, 
+    overdueDays: Math.floor(
+      (new Date().getTime() - new Date(borrow.borrowDate).getTime()) / (1000 * 60 * 60 * 24) - 14
+    ), 
+  }));
+
+  return data; 
 };
 
 const updateBorrow = async () => {
@@ -50,7 +75,7 @@ const deleteBorrow = async () =>{
 export const BorrowService = {
   createBorrow,
   getAllFromDB,
-  getByIdFromDB,
+  getOverDueFromDB,
   updateBorrow,
   deleteBorrow
 }

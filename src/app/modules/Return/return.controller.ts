@@ -9,8 +9,7 @@ const returnBook = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Borrow Created successfully!",
-        data: result
+        message: "Book returned successfully",
     })
 });
 

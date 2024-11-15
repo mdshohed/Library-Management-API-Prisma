@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/', BorrowController.createBorrow );
 router.get('/', BorrowController.getAllFromDB );
-router.get('/overdue', BorrowController.getAllFromDB );
+router.get('/overdue', BorrowController.getOverDueFromDB );
 
 export const BorrowRoutes = router;
