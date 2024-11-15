@@ -4,13 +4,12 @@ import { prisma } from "../../../config";
 
 const createBorrow = async ( req: Request) => {
   const { bookId, memberId } = req.body;
-  console.log(req.body);
-  const bookInfo = await prisma.book.findUniqueOrThrow({
+  await prisma.book.findUniqueOrThrow({
     where: {
       bookId
     }
   });
-  const memberInfo = await prisma.member.findUniqueOrThrow({
+  await prisma.member.findUniqueOrThrow({
     where: {
       memberId
     }
@@ -39,7 +38,6 @@ const getOverDueFromDB = async () => {
   const currentDate = new Date();
   const overDueDate = new Date();
   overDueDate.setDate(currentDate.getDate() - 14);
-  console.log(overDueDate);
   const overdueBorrows = await prisma.borrow.findMany({
     where: {
       borrowDate: {

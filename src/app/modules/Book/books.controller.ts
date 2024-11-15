@@ -5,8 +5,6 @@ import httpStatus from "http-status";
 import { BookService } from "./books.service";
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
-    console.log(req.body);
-    
     const result = await BookService.createBook(req);
     sendResponse(res, {
         statusCode: httpStatus.CREATED,
